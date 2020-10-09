@@ -1,63 +1,84 @@
 <template>
-    <div id="Admin">
-        
-          <div>
-            <h1 id="ban">Admin Interface</h1>
-            <div id="userBann">
-              <h1 class="h1a">Banned Accounts</h1>
-              <input
-                type="username"
-                placeholder="Username"
-                
-                required
-              />
-              <input
-                type="text"
-                placeholder="reason"
-                required
-              >
+  <div id="Admin">
+    <div>
+      <h1 id="ban">Admin Interface</h1>
+      <div id="userBann">
+        <h1 class="h1a">Banned Accounts</h1>
+        <input type="username" placeholder="Username" required />
+        <input type="text" placeholder="reason" required />
 
-              <input
-                type="date"
-                required
-              > <br>
-              <button id="buttValid" >
-                Validate
-              </button>
-              <button id="getfeeds">
-                See Feedbacks
-              </button>
-            </div>
-            <div id="repo">
-              <h1 id="repN">Reports</h1>   
-           
-              <div class="reposes" key={index}> Said : </div>
-           
-              
-            </div>
-          </div>
-        
-          <div>
-            <h1 id="feed" class="h1a">Users Feedbacks</h1>
-            <button id="back" onClick={this.handleBack}>
-              Back
-            </button>
-            <div id="feeds">
-              
-                  <div>
-                    <div id="feedhold"></div> <br />
-                  </div>
-                
-            </div>
-          </div>
-        
+        <input type="date" required /> <br />
+        <button id="buttValid">Validate</button>
+        <button id="getfeeds">See Feedbacks</button>
       </div>
+      <div id="repo">
+        <h1 id="repN">Reports</h1>
+
+        <div class="reposes" key="{index}">Said :</div>
+      </div>
+    </div>
+
+    <div>
+      <h1 id="feed" class="h1a">Users Feedbacks</h1>
+      <button id="back" onClick="{this.handleBack}">Back</button>
+      <div id="feeds">
+        <div>
+          <div id="feedhold"></div>
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {
-    name: 'Admin'
-}
+// import axios from "axios";
+// export default {
+//   name: "Admin",
+//   data() {
+//     return {
+//       username: "",
+//       reason: "",
+//       date: "",
+//       dataF: [],
+//       displayBann: true,
+//       displayFeedback: false,
+//       dataR: [],
+//     };
+//   },
+//   mounted() {
+//     axios.post("/freports").then((result) => {
+//       this.dataR = result.data;
+//     });
+//   },
+//   methods: {
+//     handleBack() {
+//       this.displayBann = true;
+//       this.displayFeedback = false;
+//     },
+//     handlClick(e) {
+//       this.displayBann = false;
+//       this.displayFeedback = true;
+//       axios.get("/Feeds")
+//         .then((result) => {
+//           console.log(result);
+//           console.log(result.data);
+//           this.dataF = result.data;
+//         })
+//         .catch((e) => {
+//           console.log(e);
+//         });
+//     },
+//     AxiosBann() {
+//        let data = {
+//           username : this.username,
+//           reason: this.reason,
+//           date: this.date,
+//         }
+//       axios("/banaccount",);
+//     },
+//   },
+// };
 </script>
 
 <style>
@@ -72,7 +93,7 @@ export default {
   top: 69px;
   height: 500px;
 }
-.h1a{
+.h1a {
   color: white;
 }
 #ban {
@@ -112,27 +133,27 @@ export default {
   width: 361px;
   height: 43px;
   position: relative;
-  left:20px;
+  left: 20px;
   border-radius: 4px;
   background-color: #eeeeee;
   margin-top: 11px;
 }
 .Xbutt {
   padding: 11px;
-    color: red;
-    background-color: white;
-    position: absolute;
-    left: 311px;
-    top: 2px;
-    background-color: red;
-    color: white;
-    padding: 14px 20px;
-    margin: -2px 0px;
-    border: inherit;
-    cursor: pointer;
-    width: 14%;
-    opacity: 0.9;
-    border-radius: 0px;
+  color: red;
+  background-color: white;
+  position: absolute;
+  left: 311px;
+  top: 2px;
+  background-color: red;
+  color: white;
+  padding: 14px 20px;
+  margin: -2px 0px;
+  border: inherit;
+  cursor: pointer;
+  width: 14%;
+  opacity: 0.9;
+  border-radius: 0px;
 }
 
 #feed {

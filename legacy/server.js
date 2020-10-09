@@ -42,10 +42,10 @@ app.listen(port, () => {
 
 
 app.post("/position",(req,res)=>{
-  console.log(req.body)
+  // console.log(req.body)
   playerPosition[req.body.id]=req.body.positionX+"-"+req.body.positionY+"="+req.body.face+"?"+req.body.skin
   mouve(req.body.positionX,req.body.positionY,req.body.id,res,req)
-  console.log(playerPosition)
+  // console.log(playerPosition)
 })
 
 app.post('/selectChar',(req,res)=>{ // Will Update the account skin with the selected skin from the signup0
@@ -125,7 +125,7 @@ app.post("/feedbacks", async (res, req) => {
   await feedback
     .save()
     .then((res) => {
-      console.log("feedback saved");
+      // console.log("feedback saved");
     })
     .catch((e) => {
       console.log(error);
@@ -151,7 +151,7 @@ dbF.fetchreports(res)
 });
 
 app.post("/banaccount", async (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   dbF.banaccount(req.body.username,req.body.reason,req.body.date,res)
   });
 
@@ -165,9 +165,9 @@ app.post("/banaccount", async (req, res) => {
   });
   
   app.post("/purchase", async (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     dbF.Users.update({AccountNumber:req.body.id},{Balance:req.body.Balance}).then(result=>{
-      console.log(result)
+      // console.log(result)
    res.send()
     })
     // dbF.UpdataBalance(req.body.id,req.body.Balance,res)
@@ -181,7 +181,7 @@ const deleteP=function(px,py,res){
   var currentpositionY=(py-100)/10
   matrix[currentpositionX][currentpositionY]=0
   console.table(matrix)
-  console.log(currentpositionX,currentpositionY)
+  // console.log(currentpositionX,currentpositionY)
   res.send()
 }
 
@@ -191,8 +191,8 @@ var randomSpawn = function(id,res,req){
   if(matrix[x][y]===0){
      matrix[x][y]=id
      playerPosition[req.body.id]=(130+(x*10))+"-"+(100+(y*10))+"="+req.body.Face+"?"+req.body.skin;
-     console.log('this is the undefined in matrix ====>', req.body )
-     console.log('this is the new position ====>', {x:x,y:y} )
+    //  console.log('this is the undefined in matrix ====>', req.body )
+    //  console.log('this is the new position ====>', {x:x,y:y} )
      res.send({x:x,y:y})
 
   }else{

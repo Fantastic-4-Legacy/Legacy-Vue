@@ -21,11 +21,11 @@
     />
     <NavBar v-if="displaynavbar" @displaysHome="displaysHome" @displayShops="displayShops" @displayaboutUs="displayaboutUs" />
 
-    <Token @PassTokenToParent="PassTokenToParent" @newbalance="newbalance" v-if="displayToken" />
+    <Token @PassTokenToParent="PassTokenToParent" :newbalance="newbalance" :Id="Id" v-if="displayToken" />
     <Shop @changebalance="changebalance" :token="token" :Id="Id" v-if="displayShop"/>
     <AboutUs v-if="displayAboutUs" />
     <Simulation v-if="displaySimulation" 
-      :data="userdata"
+      :userdata="userdata"
       @UserId="UserId"
        />
 
@@ -118,9 +118,9 @@ export default {
       this.displaysignup = !this.displaysignup;
     },
     UpdateData(data) {
-      console.log('UserData=========>', data)
+      // console.log('UserData=========>', data)
       this.userdata = data.data;
-      console.log('UserData.data=========>', data.data)
+      // console.log('UserData.data=========>', data.data)
     },
     selectCharId(id) {
       // Display the secound Signup component which is (signup0) To select the character that you will play with
@@ -137,7 +137,7 @@ export default {
       this.displayToken = true;
     },
     Mlogin() {
-      console.log('slim : 5 mlogin here')
+      // console.log('slim : 5 mlogin here')
       this.displaySignup0 = false;
       this.displaylogin = true;
     },

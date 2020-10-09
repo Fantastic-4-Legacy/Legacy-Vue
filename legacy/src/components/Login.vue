@@ -32,10 +32,10 @@ export default {
         name: this.username,
         password: this.password,
       };
-      console.log(data)
+      // console.log(data)
       axios.post("/login", data).then((data) => {
         data = data.data;
-        console.log('this is it============>',data);
+        // console.log('this is it============>',data);
         if (data.Banned) {
           Toast.fail(
             `you are banned because ${data.Reason} you will be unbanned in ${data.Periode}`,

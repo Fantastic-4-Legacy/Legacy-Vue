@@ -61,13 +61,13 @@ export default {
       this.Id = this.id;
       this.character = this.skin;
     }, 1500);
-    console.log("this.positionX ===", this.positionX);
-    console.log("this.positionY ===", this.positionY);
+    // console.log("this.positionX ===", this.positionX);
+    // console.log("this.positionY ===", this.positionY);
   },
   methods: {
     moveView: function(event) {
       var x = event.keyCode;
-      console.log('keycode ===>', x)
+      // console.log('keycode ===>', x)
       var face = "";
       if (x === 87) {
         if (this.positionX <= 390 && this.positionX > 130) {

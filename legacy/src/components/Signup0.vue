@@ -48,7 +48,7 @@ export default {
         currentskin: this.i,
       };
       axios.post("/selectChar", data).then((data) => {
-        console.log('slim : 4 data sent to be saved=>', data)
+        // console.log('slim : 4 data sent to be saved=>', data)
         this.$emit("Mlogin");
       })
       .catch(err => console.log(err))

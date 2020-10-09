@@ -30,13 +30,13 @@ export default {
         password: this.pass,
         email: this.email,
       };
-      console.log("data -> username", this.username);
-      console.log("data -> email", this.email);
-      console.log("data -> pass", this.pass);
+      // console.log("data -> username", this.username);
+      // console.log("data -> email", this.email);
+      // console.log("data -> pass", this.pass);
       axios
         .post("/register", data)
         .then((data) => {
-          console.log('signup data===>',data);
+          // console.log('signup data===>',data);
           if (data.data.Registred) {
             alert("Account exist");
             this.username = "";

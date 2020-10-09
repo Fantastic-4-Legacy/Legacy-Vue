@@ -1,8 +1,8 @@
 <template>
   <div class="screen">
-        <div class="conversation">
+        <div class="conversation" >
         <div class="messages messages--sent">
-            <div class="message" key="{index}">Message</div>
+            <div class="message" >Message</div>
         </div>
         <div class="messages messages--received" key="{index}">
             <div class="message">
@@ -25,8 +25,36 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: "Chat",
+  data(){
+    return {
+      message : ""
+    }
+  },
+  methods : {
+    sendreport(e) {
+    var msgnumber = e.target.id[e.target.id.length - 1];
+    var message = this.props.messages.Messages[msgnumber];
+    let data= {
+        to: e.target.id.substring(0, e.target.id.length - 1),
+        message: message.message,
+      };
+    axios.post("/reports",data)
+  },
+  sendmessage() {
+    //send Request to the server To save the message in the db
+    let data= {
+        from: this.props.from,
+        to: this.props.messages.name,
+        message: document.getElementById("msginput").value,
+        position: this.props.position,
+      };
+    axios.post("/message",data);
+    }
+  }
+
 };
 </script>
 
