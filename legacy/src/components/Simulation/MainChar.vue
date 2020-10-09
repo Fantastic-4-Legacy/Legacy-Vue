@@ -1,6 +1,6 @@
 <template>
   <img
-    src="currentP"
+    :src="currentP"
     :oneKeyDown="moveView"
     :tableIndex="0"
     :style="{ top: positionX + 'px', left: positionY + 'px' }"
@@ -110,7 +110,8 @@ export default {
             id: this.Id,
             Face: "left",
             skin: this.skin,
-            face: face,
+            face: face,*
+            
           },
         }).then((data) => {
           if (data.data.move) {
