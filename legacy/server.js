@@ -191,9 +191,9 @@ var randomSpawn = function(id,res,req){
   if(matrix[x][y]===0){
      matrix[x][y]=id
      playerPosition[req.body.id]=(130+(x*10))+"-"+(100+(y*10))+"="+req.body.Face+"?"+req.body.skin;
-    //  console.log('this is the undefined in matrix ====>', req.body )
-    //  console.log('this is the new position ====>', {x:x,y:y} )
+     console.log('this is the player position ====>', playerPosition )
      res.send({x:x,y:y})
+     console.log('this is the new position ====>', {x:x,y:y} )
 
   }else{
     randomSpawn(id)

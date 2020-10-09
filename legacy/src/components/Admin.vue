@@ -1,29 +1,38 @@
 <template>
   <div id="Admin">
-    <div>
+    <div v-if="displayBann">
       <h1 id="ban">Admin Interface</h1>
       <div id="userBann">
         <h1 class="h1a">Banned Accounts</h1>
-        <input type="username" placeholder="Username" required />
-        <input type="text" placeholder="reason" required />
+        <input
+          type="username"
+          placeholder="Username"
+          v-model="username"
+          required
+        />
+        <input type="text" placeholder="reason" v-model="reason" required />
 
-        <input type="date" required /> <br />
-        <button id="buttValid">Validate</button>
-        <button id="getfeeds">See Feedbacks</button>
+        <input type="date" v-model="date" required /> <br />
+        <button id="buttValid" @click="AxiosBann">Validate</button>
+        <button id="getfeeds" @click="getFeedBack">See Feedbacks</button>
       </div>
       <div id="repo">
         <h1 id="repN">Reports</h1>
 
-        <div class="reposes" key="{index}">Said :</div>
+        <div class="reposes" v-for="({ to, report }, key) in dataR" :key="key">
+          {{ to }} Said : {{ report }}
+        </div>
       </div>
     </div>
 
-    <div>
+    <div v-if="displayFeedback">
       <h1 id="feed" class="h1a">Users Feedbacks</h1>
-      <button id="back" onClick="{this.handleBack}">Back</button>
+      <button id="back" @click="handleBack">Back</button>
       <div id="feeds">
         <div>
-          <div id="feedhold"></div>
+          <div id="feedhold" v-for="ele in dataF" :key="ele.id">
+            {{ ele.feedbacks }}
+          </div>
           <br />
         </div>
       </div>
@@ -32,53 +41,66 @@
 </template>
 
 <script>
-// import axios from "axios";
-// export default {
-//   name: "Admin",
-//   data() {
-//     return {
-//       username: "",
-//       reason: "",
-//       date: "",
-//       dataF: [],
-//       displayBann: true,
-//       displayFeedback: false,
-//       dataR: [],
-//     };
-//   },
-//   mounted() {
-//     axios.post("/freports").then((result) => {
-//       this.dataR = result.data;
-//     });
-//   },
-//   methods: {
-//     handleBack() {
-//       this.displayBann = true;
-//       this.displayFeedback = false;
-//     },
-//     handlClick(e) {
-//       this.displayBann = false;
-//       this.displayFeedback = true;
-//       axios.get("/Feeds")
-//         .then((result) => {
-//           console.log(result);
-//           console.log(result.data);
-//           this.dataF = result.data;
-//         })
-//         .catch((e) => {
-//           console.log(e);
-//         });
-//     },
-//     AxiosBann() {
-//        let data = {
-//           username : this.username,
-//           reason: this.reason,
-//           date: this.date,
-//         }
-//       axios("/banaccount",);
-//     },
-//   },
-// };
+import axios from "axios";
+export default {
+  name: "Admin",
+  data() {
+    return {
+      username: "",
+      reason: "",
+      date: "",
+      dataF: [],
+      displayBann: true,
+      displayFeedback: false,
+      dataR: [],
+    };
+  },
+  mounted() {
+    axios({
+      url: "/freports",
+      method: "post",
+    }).then((result) => {
+      setTimeout(() => {
+        this.dataR = result.data;
+        console.log("this dataR   ====== ", this.dataR);
+      }, 500);
+    });
+  },
+  methods: {
+    getFeedBack() {
+      this.displayBann = false;
+      this.displayFeedback = true;
+      axios({
+        url: "/Feeds",
+        method: "GET",
+      })
+        .then((result) => {
+          this.dataF = result.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    AxiosBann() {
+      axios({
+        url: "/banaccount",
+        method: "post",
+        data: {
+          username: this.username,
+          reason: this.reason,
+          date: this.date,
+        },
+      });
+    },
+    handleBack() {
+      this.displayBann = !this.displayBann;
+      this.displayFeedback = !this.displayFeedback;
+    },
+  },
+  // updated() {
+  //   console.log("updated :", this.displayBann, this.displayFeedback);
+  // },
+};
 </script>
 
 <style>
@@ -140,6 +162,7 @@
 }
 .Xbutt {
   padding: 11px;
+
   color: red;
   background-color: white;
   position: absolute;

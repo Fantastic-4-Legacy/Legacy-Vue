@@ -1,17 +1,16 @@
 <template>
-
   <img
-    src="/images/chars/0/FD/fd0.png"
+    class="avatar-img"
+    :src="currentP"
     v-on:keyup="moveView"
     :tabIndex="0"
-    :style="{ top: positionX + 'px', left: positionY + 'px' }"
+    :style="{ position: 'absolute', top: Xx + 'px', left: Yy + 'px' }"
   />
-
 </template>
 <script>
 import axios from "axios";
 export default {
-  name : "Maincharacter",
+  name: "Maincharacter",
   data() {
     return {
       character: 0,
@@ -21,7 +20,23 @@ export default {
       FU: 0,
       FL: 0,
       FR: 0,
-      face: [
+      positionX: 0,
+      positionY: 0,
+    };
+  },
+  props: ["skin", "id", "MainP"],
+  computed: {
+    currentP: function () {
+      return "/images/chars/" + this.skin + "/FD/fd0.png";
+    },
+    Xx: function () {
+      return this.positionX;
+    },
+    Yy: function () {
+      return this.positionY;
+    },
+    face: function () {
+      return [
         {
           D0: `../../../public/images/chars/${this.skin}/FD/fd0.png`,
           D1: `../../../public/images/chars/${this.skin}/FD/fd1.png`,
@@ -36,25 +51,14 @@ export default {
           u1: `../../../public/images/chars/${this.skin}/FU/fu1.png`,
           u2: `../../../public/images/chars/${this.skin}/FU/fu2.png`,
         },
-      ],
-    };
-  },
-  props: ["skin", "id", "MainP"],
-  computed: {
-    currentP: function () {
-      return "../../../public/images/chars/"+ this.skin +"/FD/fd0.png";
+      ];
     },
-    positionX: function(){
-      return 230
-    },
-    positionY: function(){
-      return 490
-    }
   },
   mounted() {
-    this.currentP();
-    this.positionX();
-    this.positionY();
+    // this.currentP();
+    // console.log('this skin =====', this.skin)
+    // this.positionX();
+    // this.positionY();
     setTimeout(() => {
       this.positionX = this.MainP.x * 10 + 130;
       this.positionY = this.MainP.y * 10 + 100;
@@ -65,7 +69,7 @@ export default {
     // console.log("this.positionY ===", this.positionY);
   },
   methods: {
-    moveView: function(event) {
+    moveView: function (event) {
       var x = event.keyCode;
       // console.log('keycode ===>', x)
       var face = "";
@@ -208,3 +212,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+/* .avatar-img {
+  position: absolute;
+} */
+</style>

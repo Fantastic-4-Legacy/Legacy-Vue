@@ -162,7 +162,7 @@ export default {
     console.log("before update :", this.id, this.name);
   },
   updated() {
-    console.log("updated :", this.id, this.name);
+    console.log("updated :", this.userdata.Id, this.name);
   },
 
   beforeDestroy() {
@@ -183,26 +183,26 @@ export default {
 
 
 <style>
-#map {
-  border: solid black 4px;
-  border-radius: 6px;
-  position: relative;
-  top: 60px;
-  left: 315px;
-  background-image: url(/images/map/map.png);
-  width: 680px;
-  height: 500px;
-  margin: 0%;
-  padding: 0%;
-}
-#FriendsLogo {
-  margin: 0%;
-  padding: 0%;
-  width: 50px;
-  position: absolute;
-  top: 450px;
-  left: 625px;
-}
+#map{
+    border: solid #a2a2a273 4px;
+    border-radius: 6px;
+    position: relative;
+    top: 17px;
+    left: 315px;
+    background-image: url(/images/map/map.png);
+    width: 680px;
+    height: 500px;
+    margin: 0%;
+    padding: 0%;
+  }
+  #FriendsLogo{
+   margin: 0%;
+   padding: 0%;
+   width: 50px;
+   position: absolute;
+   top: 450px;
+   left: 625px;
+ }
 
 #invitations {
   position: absolute;
@@ -212,4 +212,5 @@ export default {
   height: 64px;
   width: 50px;
 }
+
 </style>

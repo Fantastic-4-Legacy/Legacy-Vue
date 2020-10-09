@@ -47,7 +47,7 @@ export default {
         id: this.id,
         currentskin: this.i,
       };
-      axios.post("/selectChar", data).then((data) => {
+      axios.post("/selectChar", data).then(() => {
         // console.log('slim : 4 data sent to be saved=>', data)
         this.$emit("Mlogin");
       })
