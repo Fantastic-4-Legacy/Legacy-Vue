@@ -1,63 +1,108 @@
 <template>
-    <div id="Admin">
-        
-          <div>
-            <h1 id="ban">Admin Interface</h1>
-            <div id="userBann">
-              <h1 class="h1a">Banned Accounts</h1>
-              <input
-                type="username"
-                placeholder="Username"
-                
-                required
-              />
-              <input
-                type="text"
-                placeholder="reason"
-                required
-              >
 
-              <input
-                type="date"
-                required
-              > <br>
-              <button id="buttValid" >
-                Validate
-              </button>
-              <button id="getfeeds">
-                See Feedbacks
-              </button>
-            </div>
-            <div id="repo">
-              <h1 id="repN">Reports</h1>   
-           
-              <div class="reposes" key={index}> Said : </div>
-           
-              
-            </div>
-          </div>
-        
-          <div>
-            <h1 id="feed" class="h1a">Users Feedbacks</h1>
-            <button id="back" onClick={this.handleBack}>
-              Back
-            </button>
-            <div id="feeds">
-              
-                  <div>
-                    <div id="feedhold"></div> <br />
-                  </div>
-                
-            </div>
-          </div>
-        
+  <div id="Admin">
+    <div v-if="displayBann">
+      <h1 id="ban">Admin Interface</h1>
+      <div id="userBann">
+        <h1 class="h1a">Banned Accounts</h1>
+        <input
+          type="username"
+          placeholder="Username"
+          v-model="username"
+          required
+        />
+        <input type="text" placeholder="reason" v-model="reason" required />
+
+        <input type="date" v-model="date" required /> <br />
+        <button id="buttValid" @click="AxiosBann">
+          Validate
+        </button>
+        <button id="getfeeds" @click="getFeedBack">
+          See Feedbacks
+        </button>
       </div>
+      <div id="repo">
+        <h1 id="repN">Reports</h1>
+
+        <div class="reposes" v-for="{ ele, key } in dataR" :key="key">
+          {{ ele.to }} Said : {{ ele.report }}
+        </div>
+      </div>
+    </div>
+
+    <div v-if="displayFeedback">
+      <h1 id="feed" class="h1a">Users Feedbacks</h1>
+      <button id="back" @click="handleBack">
+        Back
+      </button>
+      <div id="feeds">
+        <div>
+          <div id="feedhold" v-for="{ ele, key } in dataF" :key="key">
+            {{ ele.feedbacks }}
+
+          </div>
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
-    name: 'Admin'
-}
+  name: "Admin",
+  data() {
+    return {
+      username: "",
+      reason: "",
+      date: "",
+      dataF: [],
+      displayBann: true,
+      displayFeedback: false,
+      dataR: [],
+    };
+  },
+  mounted() {
+    axios({
+      url: "/freports",
+      method: "post",
+    }).then((result) => {
+      this.dataR = result.data;
+    });
+  },
+  methods: {
+    getFeedBack() {
+      this.displayBann = false;
+      this.displayFeedback = true;
+      axios({
+        url: "/Feeds",
+        method: "GET",
+      })
+        .then((result) => {
+          this.dataF = result.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    AxiosBann() {
+      axios({
+        url: "/banaccount",
+        method: "post",
+        data: {
+          username: this.username,
+          reason: this.reason,
+          date: this.date,
+        },
+      });
+    },
+    handleBack() {
+      this.displayBann = true;
+      this.displayFeedback = false;
+    },
+  },
+};
 </script>
 
 <style>
@@ -72,7 +117,7 @@ export default {
   top: 69px;
   height: 500px;
 }
-.h1a{
+.h1a {
   color: white;
 }
 #ban {
@@ -112,13 +157,14 @@ export default {
   width: 361px;
   height: 43px;
   position: relative;
-  left:20px;
+  left: 20px;
   border-radius: 4px;
   background-color: #eeeeee;
   margin-top: 11px;
 }
 .Xbutt {
   padding: 11px;
+
     color: red;
     background-color: white;
     position: absolute;
@@ -170,5 +216,6 @@ export default {
   background-color: white;
   color: black;
   text-align: center;
+
 }
 </style>>

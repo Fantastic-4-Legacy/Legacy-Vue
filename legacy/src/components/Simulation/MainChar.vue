@@ -1,6 +1,7 @@
 <template>
 
   <img
+
     src="/images/chars/0/FD/fd0.png"
     v-on:keyup="moveView"
     :tabIndex="0"
@@ -127,7 +128,8 @@ export default {
             id: this.Id,
             Face: "left",
             skin: this.skin,
-            face: face,
+            face: face,*
+            
           },
         }).then((data) => {
           if (data.data.move) {
