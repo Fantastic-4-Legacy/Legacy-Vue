@@ -1,4 +1,5 @@
 <template>
+
   <div id="Admin">
     <div v-if="displayBann">
       <h1 id="ban">Admin Interface</h1>
@@ -38,6 +39,7 @@
         <div>
           <div id="feedhold" v-for="{ ele, key } in dataF" :key="key">
             {{ ele.feedbacks }}
+
           </div>
           <br />
         </div>
@@ -162,20 +164,21 @@ export default {
 }
 .Xbutt {
   padding: 11px;
-  color: red;
-  background-color: white;
-  position: absolute;
-  left: 311px;
-  top: 2px;
-  background-color: red;
-  color: white;
-  padding: 14px 20px;
-  margin: -2px 0px;
-  border: inherit;
-  cursor: pointer;
-  width: 14%;
-  opacity: 0.9;
-  border-radius: 0px;
+
+    color: red;
+    background-color: white;
+    position: absolute;
+    left: 311px;
+    top: 2px;
+    background-color: red;
+    color: white;
+    padding: 14px 20px;
+    margin: -2px 0px;
+    border: inherit;
+    cursor: pointer;
+    width: 14%;
+    opacity: 0.9;
+    border-radius: 0px;
 }
 
 #feed {
@@ -213,5 +216,6 @@ export default {
   background-color: white;
   color: black;
   text-align: center;
-}</style
->>
+
+}
+</style>>
