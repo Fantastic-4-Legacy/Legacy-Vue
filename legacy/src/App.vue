@@ -19,15 +19,18 @@
     @Mlogin="Mlogin" 
     v-if="displaySignup0" 
     />
-    <NavBar v-if="displaynavbar" />
+    <NavBar v-if="displaynavbar" @displaysHome="displaysHome" @displayShops="displayShops" @displayaboutUs="displayaboutUs" />
 
-    <Token v-if="displayToken" />
-    <Shop v-if="displayshop" />
-    <AboutUs v-if="displayAboutUs"/>
+    <Token @PassTokenToParent="PassTokenToParent" @newbalance="newbalance" v-if="displayToken" />
+    <Shop @changebalance="changebalance" :token="token" :Id="Id" v-if="displayShop"/>
+    <AboutUs v-if="displayAboutUs" />
     <Simulation v-if="displaySimulation" 
       :data="userdata"
       @UserId="UserId"
        />
+
+
+
   </div>
 </template>
 <script>
@@ -36,7 +39,7 @@ import Admin from "./components/Admin";
 import Signup from "./components/Signup";
 import Signup0 from "./components/Signup0";
 import Login from "./components/Login";
-import Navbar from "./components/Navbar";
+import NavBar from "./components/Navbar";
 import Token from "./components/Token";
 import Shop from "./components/ShopAvatar/Shop";
 import AboutUs from "./components/AboutUs";
@@ -51,7 +54,7 @@ export default {
     Signup,
     Signup0,
     Login,
-    Navbar,
+    NavBar,
     Token,
     Shop,
     AboutUs,
@@ -62,17 +65,18 @@ export default {
       token: 0,
       Id: "",
       userdata: {},
-      displaynavbar: true,
-      displaylogin: false,
+      displaynavbar: false ,
+      displaylogin: true,
       displaysignup: false,
-      displayshop: false,
+      displayShop: false,
       displaySimulation: false,
-      displaylogo: false,
+      displaylogo: true,
       displaySignup0: false,
       displayAboutUs: false,
       displayS: false,
       displayToken: false,
-      displayadmin: true,
+      displayadmin: false,
+      newbalance: 0
     };
   },
   methods: {
@@ -96,17 +100,17 @@ export default {
     displaysHome() {
       this.displayAboutUs = false;
       this.displaySimulation = true;
-      this.displayshop = false;
+      this.displayShop = false;
     },
-    displayShop() {
+    displayShops() {
       this.displayAboutUs = false;
       this.displaySimulation = false;
-      this.displayshop = true;
+      this.displayShop = true;
     },
     displayaboutUs() {
       this.displayAboutUs = true;
       this.displaySimulation = false;
-      this.displayshop = false;
+      this.displayShop = false;
     },
     toggleLoginSignup() {
       // Toogle between login and signup if you have Already an account or you dont
