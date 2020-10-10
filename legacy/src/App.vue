@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Logo v-if="displaylogo" />
+    <!-- <Logo v-if="displaylogo" /> -->
     <Admin v-if="displayadmin" />
     <Login
       @startS="startS"
@@ -38,7 +38,7 @@
   </div>
 </template>
 <script>
-import Logo from "./components/Logo";
+// import Logo from "./components/Logo";
 import Admin from "./components/Admin";
 import Signup from "./components/Signup";
 import Signup0 from "./components/Signup0";
@@ -53,7 +53,7 @@ import Simulation from "./components/Simulation/Simulation";
 export default {
   name: "App",
   components: {
-    Logo,
+    // Logo,
     Admin,
     Signup,
     Signup0,

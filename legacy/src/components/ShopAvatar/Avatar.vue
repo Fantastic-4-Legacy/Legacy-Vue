@@ -16,17 +16,11 @@
 <script>
 export default {
   name: "Avatar",
-  props : [
-    "avatar",
-    "Id",
-    "image",
-    "price",
-    "balance"
-  ],
+  props: ["avatar", "Id", "image", "price", "balance"],
   methods: {
     updateBalance() {
       if (this.balance >= this.price) {
-        this.$emit("changebalance" ,this.balance - this.price);
+        this.$emit("changebalance", this.balance - this.price);
         alert("Check Your Gmail For Card-Code");
       } else {
         alert(
@@ -38,16 +32,13 @@ export default {
 };
 </script>
 <style>
-#items{
+#items {
   width: 193px;
-    height: 238px;
-    margin-top: 9px;
-    border: 1px solid black;
-
+  height: 238px;
+  margin-top: 9px;
+  border: 1px solid black;
 }
 .avatar_image {
-  /* text-align: center; */
-  
   position: relative;
   left: 37px;
   height: 77px;
@@ -68,15 +59,18 @@ export default {
   font-size: 19px;
   font-family: "Comic Sans MS", cursive, sans-serif;
 }
-#btnchop{
+#btnchop {
   margin-left: 33px;
-    position: relative;
-    left: -11px;
-    font-size: 9px;
+  position: relative;
+  left: -11px;
+  font-size: 9px;
+}
+#btnchop:hover {
+  cursor: pointer;
 }
 .btn {
   margin-left: 30px;
   position: relative;
   left: -20px;
 }
-</style>>
+</style>

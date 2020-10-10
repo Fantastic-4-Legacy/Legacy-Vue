@@ -36,7 +36,7 @@ export default {
 <style>
 .container {
 position: relative;
-    left: 364px;
+    left: 250px;
     width: 311px;
 }
 .container ul {
@@ -65,12 +65,12 @@ ul li::before {
   transition: all 0.2s;
 }
 ul li:hover {
-  background-color: rgb(255, 63, 63);
+  background-color: rgb(151, 120, 132);
 }
 ul li:hover::before {
   bottom: 56px;
   left: 0;
-  background-color: rgb(255, 63, 63);
+  background-color: rgb(151, 120, 132);
 }
 
 .container {

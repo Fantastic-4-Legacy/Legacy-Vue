@@ -66,9 +66,9 @@ export default {
 <style>
 .body {
     position: relative;
-    top: 29px;
+    top: 150px;
     left: 450px;
-    background: #f6f5f7;
+      background: #fafabf73;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,7 +76,7 @@ export default {
     font-family: "Montserrat", sans-serif;
     height: 65vh;
     width: 400px;
-    border: #592bff;
+    border: #eea826;
     border-radius: 10%;
     border-style: solid;
   }
@@ -99,7 +99,7 @@ export default {
   button {
     border-radius: 20px;
     border: 1px solid black;
-    background-color: #592bff;
+    background-color: #eea826;
     color: #ffffff;
     font-size: 12px;
     font-weight: bold;

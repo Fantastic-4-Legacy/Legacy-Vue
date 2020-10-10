@@ -10,7 +10,13 @@
           v-model="username"
           required
         />
-        <input type="text" placeholder="reason" v-model="reason" required />
+        <input
+          id="reason"
+          type="text"
+          placeholder="reason"
+          v-model="reason"
+          required
+        />
 
         <input type="date" v-model="date" required /> <br />
         <button id="buttValid" @click="AxiosBann">Validate</button>
@@ -114,6 +120,7 @@ export default {
   padding-top: 17px;
   top: 69px;
   height: 500px;
+  background-color: rgb(68 67 67 / 30%);
 }
 .h1a {
   color: white;
@@ -124,7 +131,6 @@ export default {
   position: relative;
   left: 273px;
 }
-
 #userBann {
   position: relative;
   width: 394px;
@@ -132,18 +138,17 @@ export default {
   margin-top: 33px;
   top: 68px;
 }
-
 #repo {
-  border: 1px solid black;
+  border: 1px solid rgb(68, 67, 67);
   width: 416px;
   height: 350px;
   position: relative;
-  top: -224px;
+  top: -199px;
   left: 376px;
   overflow-y: auto;
   overflow-x: hidden;
+  background-color: rgb(68 67 67 / 68%);
 }
-
 #repN {
   position: relative;
   left: 146px;
@@ -151,7 +156,7 @@ export default {
   color: white;
 }
 .reposes {
-  border: 1px solid black;
+  border: 1px solid grey;
   width: 361px;
   height: 43px;
   position: relative;
@@ -162,7 +167,6 @@ export default {
 }
 .Xbutt {
   padding: 11px;
-
   color: red;
   background-color: white;
   position: absolute;
@@ -178,20 +182,21 @@ export default {
   opacity: 0.9;
   border-radius: 0px;
 }
-
 #feed {
   position: relative;
   left: 287px;
   top: -19px;
 }
-
 #back {
   position: relative;
   top: -74px;
   left: -47px;
   padding: 8px;
+  background-color: 592bff;
 }
-
+#back:hover {
+  cursor: pointer;
+}
 #feeds {
   border: 2px solid black;
   position: relative;
@@ -201,8 +206,8 @@ export default {
   height: 422px;
   overflow-y: scroll;
   overflow-x: visible;
+  background-color: rgb(68 67 67 / 35%);
 }
-
 #feedhold {
   border: 2px solid rgb(255, 255, 255);
   width: 807px;
@@ -215,4 +220,29 @@ export default {
   color: black;
   text-align: center;
 }
-</style>>
+#buttValid {
+  margin-top: 35px;
+}
+#buttValid:hover {
+  cursor: pointer;
+}
+input[type="date" i] {
+  margin-top: 20px;
+}
+#reason {
+  margin-left: 20px;
+}
+#buttValid {
+  margin-left: 95px;
+  background-color: 592bff;
+}
+#getfeeds {
+  margin-left: 75px;
+  background-color: 592bff;
+  margin-top: 15px;
+}
+
+#getfeeds:hover {
+  cursor: pointer;
+}
+</style>

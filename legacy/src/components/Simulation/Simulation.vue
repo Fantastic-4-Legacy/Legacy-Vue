@@ -127,7 +127,7 @@ export default {
   },
 
   mounted() {
-    this.$nextTick(function () {
+    this.$nextTick(function() {
       Toast.info(
         "Moves: \n Up : W  \n Right : D  \n Left : A \n  Down : S",
         500
@@ -178,24 +178,23 @@ export default {
     clearInterval(this.d);
   },
   watch: {
-    id: function (newVal) {
+    id: function(newVal) {
       this.id = newVal.id;
     },
-    name: function (newVal) {
+    name: function(newVal) {
       this.name = newVal.name;
     },
   },
 };
 </script>
 
-
 <style>
 #map {
   border: solid #a2a2a273 4px;
   border-radius: 6px;
   position: relative;
-  top: 17px;
-  left: 315px;
+  top: 80px;
+  left: 200px;
   background-image: url(/images/map/map.png);
   width: 680px;
   height: 500px;

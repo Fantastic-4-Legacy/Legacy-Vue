@@ -1,5 +1,5 @@
 <template>
-  <div><img src="/images/logo3.png" width="40%" id="logofamy" /></div>
+  <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIZBPfe25wuDHMcex5_XoorXgHIGL50klhUA&usqp=CAU" width="40%" id="logofamy" /></div>
 </template>
 
 <script>
