@@ -1,6 +1,5 @@
 <template>
-  <div id="text" className="aboutus">
- 
+  <div id="text" class="aboutus">
     <h2 id="abs">About Us</h2>
     <h3>
       Our product is basically a social media application but it looks a better
@@ -15,20 +14,21 @@
     <div id="team">
     <h2>development team:</h2>
     <h4 id="devName">
+      <a id="namedevlop" href="https://github.com/Slim-Kasraoui"
+        >*Mohamed Slim kasraoui*</a
+      ><br />
       <a id="namedevlop" href="https://github.com/achref-bououn"
         >*Achref bouaoun*</a
       >
+      
       <br />
-      <a id="namedevlop" href="https://github.com/Slim-Kasraoui"
-        >*Slim kasraoui*</a
-      >
+       <a id="namedevlop" href="https://github.com/WalaNour">*Wala nour*</a>
       <br />
       <a id="namedevlop" href="https://github.com/malek-chebil"
         >*Malek Chebil*</a
       >
       <br />
-      <a id="namedevlop" href="https://github.com/WalaNour">*Wala nour*</a>
-      <br />
+     
     </h4>
     </div>
     <h3 id="contact">FeedBack</h3>
@@ -61,7 +61,9 @@ export default {
         feedback: this.feedback,
       };
       axios.post("/feedbacks", data).catch((err) => console.log(err));
-      Toast.success('Thank for the Feedback', 1500, ()=>{location.reload()})
+      Toast.success("Thank for the Feedback", 1500, () => {
+        location.reload();
+      });
     },
   },
 };

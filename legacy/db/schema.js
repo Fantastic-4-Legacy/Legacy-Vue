@@ -27,16 +27,16 @@ const registerUser = async function (data, res) {
   var AccountNumber;
   var user;
   await Users.findOne({ name: data.name }).then((result) => {
-    console.log('result ====>', result)
+    // console.log('result ====>', result)
     user = result;
-    console.log('user after ass ====>', user)
+    // console.log('user after ass ====>', user)
   });
   if (user !== null) {
-    console.log("done");
+    // console.log("done");
     res.send({ Registred: true });
   }else {
     await AccountNumberdB.find().then((data) => {
-      console.log('data ===>',data);
+      // console.log('data ===>',data);
       AccountNumber = data[0].AccountNumber;});
 
     await AccountNumberdB.updateOne({ AccountNumber: AccountNumber + 1 });
@@ -54,7 +54,7 @@ const registerUser = async function (data, res) {
       AccountStatus:{Banned:false,Reason:"",Periode:""},
       Balance:0
     }).save((err, doc) => {
-      console.log(doc.AccountNumber)
+      // console.log(doc.AccountNumber)
       res.send({id:doc.AccountNumber})
     });
     })
@@ -67,7 +67,7 @@ const loginUser = function (data, res) {
      if(result===null){
       res.send({ Registred: false });
       
-     console.log(result)
+    //  console.log(result)
     }else{
         var AccountStatu=result.AccountStatus
         if(AccountStatu.Banned){
@@ -127,7 +127,7 @@ await Users.findOne({AccountNumber:userId}).then(result=>{
   for(var i=0;i<r.length;i++){
     if(r[i].id==invId){
       inv=r[i].from
-      console.log(inv,"from",userId,"To")
+      // console.log(inv,"from",userId,"To")
     }
     if(r[i].id!=invId){
       finalR.push(r[i])
@@ -179,7 +179,7 @@ await Users.findOne({name:from}).then(result=>{
   newfriends0.Messages=newMessages0
 })
 await Users.update({name:from},{friends:newfriends0}).then(result=>{
-  console.log(result)
+  // console.log(result)
 })
 //secound user
 var newfriends=undefined
@@ -189,7 +189,7 @@ await Users.findOne({name:to}).then(result=>{
   newMessages=result.friends[position].Messages
   newMessages.push({from:from,to:to,message:msg})
   newfriends.Messages=newMessages
-  console.log(newfriends.Messages)
+  // console.log(newfriends.Messages)
 })
 await Users.update({name:to},{friends:newfriends})
 res.send()
@@ -231,7 +231,9 @@ const schemareport=new mongoose.Schema({
 const reports=mongoose.model('reports', schemareport);
  
 const sendreport=async function(to,report,res){
-await reports.update({},{$push:{reports:{to:to,report:report}}}).then(data=>{console.log(data)})
+await reports.update({},{$push:{reports:{to:to,report:report}}}).then(data=>{
+  // console.log(data)
+})
 res.send()
 }
 
@@ -244,7 +246,7 @@ await reports.find().then(data=>{
 const banaccount=async function(user,reason,date,res){
   var ban={Banned:true,Reason:reason,Periode:date}
   await Users.update({name:user},{AccountStatus:ban}).then(data=>{
-    console.log(data)
+    // console.log(data)
     res.send()
   })
 }

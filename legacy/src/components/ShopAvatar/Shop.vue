@@ -36,9 +36,9 @@ export default {
       this.$nextTick(function () {
       axios.get("/shop")
         .then((response) => {
-          console.log('====================================');
-          console.log('Avatars',response);
-          console.log('====================================');
+          // console.log('====================================');
+          // console.log('Avatars',response);
+          // console.log('====================================');
           this.avatars = response.data;
         })
         .catch((error) => {
@@ -50,7 +50,7 @@ export default {
     getCardPrice() {
         this.price;
       setTimeout(() => {
-        console.log("price=>", this.price);
+        // console.log("price=>", this.price);
       }, 100);
     },
   },

@@ -1,5 +1,4 @@
 <template>
-
   <div id="Admin">
     <div v-if="displayBann">
       <h1 id="ban">Admin Interface</h1>
@@ -14,32 +13,25 @@
         <input type="text" placeholder="reason" v-model="reason" required />
 
         <input type="date" v-model="date" required /> <br />
-        <button id="buttValid" @click="AxiosBann">
-          Validate
-        </button>
-        <button id="getfeeds" @click="getFeedBack">
-          See Feedbacks
-        </button>
+        <button id="buttValid" @click="AxiosBann">Validate</button>
+        <button id="getfeeds" @click="getFeedBack">See Feedbacks</button>
       </div>
       <div id="repo">
         <h1 id="repN">Reports</h1>
 
-        <div class="reposes" v-for="{ ele, key } in dataR" :key="key">
-          {{ ele.to }} Said : {{ ele.report }}
+        <div class="reposes" v-for="({ to, report }, key) in dataR" :key="key">
+          {{ to }} Said : {{ report }}
         </div>
       </div>
     </div>
 
     <div v-if="displayFeedback">
       <h1 id="feed" class="h1a">Users Feedbacks</h1>
-      <button id="back" @click="handleBack">
-        Back
-      </button>
+      <button id="back" @click="handleBack">Back</button>
       <div id="feeds">
         <div>
-          <div id="feedhold" v-for="{ ele, key } in dataF" :key="key">
+          <div id="feedhold" v-for="ele in dataF" :key="ele.id">
             {{ ele.feedbacks }}
-
           </div>
           <br />
         </div>
@@ -68,7 +60,10 @@ export default {
       url: "/freports",
       method: "post",
     }).then((result) => {
-      this.dataR = result.data;
+      setTimeout(() => {
+        this.dataR = result.data;
+        console.log("this dataR   ====== ", this.dataR);
+      }, 500);
     });
   },
   methods: {
@@ -98,10 +93,13 @@ export default {
       });
     },
     handleBack() {
-      this.displayBann = true;
-      this.displayFeedback = false;
+      this.displayBann = !this.displayBann;
+      this.displayFeedback = !this.displayFeedback;
     },
   },
+  // updated() {
+  //   console.log("updated :", this.displayBann, this.displayFeedback);
+  // },
 };
 </script>
 
@@ -165,20 +163,20 @@ export default {
 .Xbutt {
   padding: 11px;
 
-    color: red;
-    background-color: white;
-    position: absolute;
-    left: 311px;
-    top: 2px;
-    background-color: red;
-    color: white;
-    padding: 14px 20px;
-    margin: -2px 0px;
-    border: inherit;
-    cursor: pointer;
-    width: 14%;
-    opacity: 0.9;
-    border-radius: 0px;
+  color: red;
+  background-color: white;
+  position: absolute;
+  left: 311px;
+  top: 2px;
+  background-color: red;
+  color: white;
+  padding: 14px 20px;
+  margin: -2px 0px;
+  border: inherit;
+  cursor: pointer;
+  width: 14%;
+  opacity: 0.9;
+  border-radius: 0px;
 }
 
 #feed {
@@ -216,6 +214,5 @@ export default {
   background-color: white;
   color: black;
   text-align: center;
-
 }
 </style>>

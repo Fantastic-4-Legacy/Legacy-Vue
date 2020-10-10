@@ -24,7 +24,7 @@ export default {
         id: this.id,
         to: this.id,
       };
-      console.log("mounted Invitations");
+      // console.log("mounted Invitations");
 
       axios.post("/fetchIn", data).then((data) => {
         this.Invitations = data.data;

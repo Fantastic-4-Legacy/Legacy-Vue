@@ -14,23 +14,27 @@
       @toggleLoginSignup="toggleLoginSignup"
       v-if="displaysignup"
     />
-    <Signup0 
-    :id="Id" 
-    @Mlogin="Mlogin" 
-    v-if="displaySignup0" 
+    <Signup0 :id="Id" @Mlogin="Mlogin" v-if="displaySignup0" />
+    <NavBar
+      v-if="displaynavbar"
+      @displaysHome="displaysHome"
+      @displayShops="displayShops"
+      @displayaboutUs="displayaboutUs"
     />
-    <NavBar v-if="displaynavbar" @displaysHome="displaysHome" @displayShops="displayShops" @displayaboutUs="displayaboutUs" />
 
-    <Token @PassTokenToParent="PassTokenToParent" @newbalance="newbalance" v-if="displayToken" />
-    <Shop @changebalance="changebalance" :token="token" :Id="Id" v-if="displayShop"/>
+    <!-- <Token @PassTokenToParent="PassTokenToParent" :newbalance="newbalance" :Id="Id" v-if="displayToken" /> -->
+    <Shop
+      @changebalance="changebalance"
+      :token="token"
+      :Id="Id"
+      v-if="displayShop"
+    />
     <AboutUs v-if="displayAboutUs" />
-    <Simulation v-if="displaySimulation" 
-      :data="userdata"
+    <Simulation
+      v-if="displaySimulation"
+      :userdata="userdata"
       @UserId="UserId"
-       />
-
-
-
+    />
   </div>
 </template>
 <script>
@@ -40,7 +44,7 @@ import Signup from "./components/Signup";
 import Signup0 from "./components/Signup0";
 import Login from "./components/Login";
 import NavBar from "./components/Navbar";
-import Token from "./components/Token";
+// import Token from "./components/Token";
 import Shop from "./components/ShopAvatar/Shop";
 import AboutUs from "./components/AboutUs";
 import Simulation from "./components/Simulation/Simulation";
@@ -55,17 +59,17 @@ export default {
     Signup0,
     Login,
     NavBar,
-    Token,
+    // Token,
     Shop,
     AboutUs,
-    Simulation
+    Simulation,
   },
   data() {
     return {
       token: 0,
       Id: "",
       userdata: {},
-      displaynavbar: false ,
+      displaynavbar: false,
       displaylogin: true,
       displaysignup: false,
       displayShop: false,
@@ -76,7 +80,7 @@ export default {
       displayS: false,
       displayToken: false,
       displayadmin: false,
-      newbalance: 0
+      newbalance: 0,
     };
   },
   methods: {
@@ -118,9 +122,9 @@ export default {
       this.displaysignup = !this.displaysignup;
     },
     UpdateData(data) {
-      console.log('UserData=========>', data)
+      // console.log('UserData=========>', data)
       this.userdata = data.data;
-      console.log('UserData.data=========>', data.data)
+      // console.log('UserData.data=========>', data.data)
     },
     selectCharId(id) {
       // Display the secound Signup component which is (signup0) To select the character that you will play with
@@ -134,10 +138,10 @@ export default {
       this.displaylogo = false;
       this.displaynavbar = true;
       this.displaylogin = false;
-      this.displayToken = true;
+      // this.displayToken = true;
     },
     Mlogin() {
-      console.log('slim : 5 mlogin here')
+      // console.log('slim : 5 mlogin here')
       this.displaySignup0 = false;
       this.displaylogin = true;
     },

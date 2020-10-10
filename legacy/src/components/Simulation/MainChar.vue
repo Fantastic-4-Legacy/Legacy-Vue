@@ -1,28 +1,42 @@
 <template>
-
   <img
-
-    src="/images/chars/0/FD/fd0.png"
+    class="avatar-img"
+    :src="currentP"
     v-on:keyup="moveView"
     :tabIndex="0"
-    :style="{ top: positionX + 'px', left: positionY + 'px' }"
+    :style="{ position: 'absolute', top: Xx + 'px', left: Yy + 'px' }"
   />
-
 </template>
 <script>
 import axios from "axios";
 export default {
-  name : "Maincharacter",
+  name: "Maincharacter",
   data() {
     return {
       character: 0,
       Id: 0,
       name: "",
-      FD: 0,
-      FU: 0,
-      FL: 0,
-      FR: 0,
-      face: [
+      Fd: 0,
+      Fu: 0,
+      Fl: 0,
+      Fr: 0,
+      positionX: 0,
+      positionY: 0,
+    };
+  },
+  props: ["skin", "id", "MainP"],
+  computed: {
+    currentP: function () {
+      return "/images/chars/" + this.skin + "/FD/fd0.png";
+    },
+    Xx: function () {
+      return this.positionX;
+    },
+    Yy: function () {
+      return this.positionY;
+    },
+    face: function () {
+      return [
         {
           D0: `../../../public/images/chars/${this.skin}/FD/fd0.png`,
           D1: `../../../public/images/chars/${this.skin}/FD/fd1.png`,
@@ -37,46 +51,35 @@ export default {
           u1: `../../../public/images/chars/${this.skin}/FU/fu1.png`,
           u2: `../../../public/images/chars/${this.skin}/FU/fu2.png`,
         },
-      ],
-    };
-  },
-  props: ["skin", "id", "MainP"],
-  computed: {
-    currentP: function () {
-      return "../../../public/images/chars/"+ this.skin +"/FD/fd0.png";
+      ];
     },
-    positionX: function(){
-      return 230
-    },
-    positionY: function(){
-      return 490
-    }
   },
   mounted() {
-    this.currentP();
-    this.positionX();
-    this.positionY();
+    // this.currentP();
+    // console.log('this skin =====', this.skin)
+    // this.positionX();
+    // this.positionY();
     setTimeout(() => {
       this.positionX = this.MainP.x * 10 + 130;
       this.positionY = this.MainP.y * 10 + 100;
       this.Id = this.id;
       this.character = this.skin;
     }, 1500);
-    console.log("this.positionX ===", this.positionX);
-    console.log("this.positionY ===", this.positionY);
+    // console.log("this.positionX ===", this.positionX);
+    // console.log("this.positionY ===", this.positionY);
   },
   methods: {
-    moveView: function(event) {
+    moveView: function (event) {
       var x = event.keyCode;
-      console.log('keycode ===>', x)
+      // console.log('keycode ===>', x)
       var face = "";
       if (x === 87) {
         if (this.positionX <= 390 && this.positionX > 130) {
-          this.FU++;
-          if (this.FU % 3 === 0) {
+          this.Fu++;
+          if (this.Fu % 3 === 0) {
             face = this.face[0]["u2"];
             this.currentP = this.face[0]["u2"];
-          } else if (this.FU % 2 === 0) {
+          } else if (this.Fu % 2 === 0) {
             face = this.face[0]["u1"];
             this.currentP = this.face[0]["u1"];
           } else {
@@ -105,12 +108,12 @@ export default {
       }
       if (x === 65) {
         if (this.positionY <= 390 && this.positionY > 100) {
-          this.FL++;
-          if (this.FL % 3 === 0) {
+          this.Fl++;
+          if (this.Fl % 3 === 0) {
             face = this.face[0]["L2"];
             this.currentP = this.face[0]["L2"];
           }
-        } else if (this.FL % 2 === 0) {
+        } else if (this.Fl % 2 === 0) {
           face = this.face[0]["L1"];
           this.currentP = this.face[0]["L1"];
         } else {
@@ -128,8 +131,7 @@ export default {
             id: this.Id,
             Face: "left",
             skin: this.skin,
-            face: face,*
-            
+            face: face,
           },
         }).then((data) => {
           if (data.data.move) {
@@ -139,11 +141,11 @@ export default {
       }
       if (x === 68) {
         if (this.positionY < 390 && this.positionY >= 0) {
-          this.FR++;
-          if (this.FR % 3 === 0) {
+          this.Fr++;
+          if (this.Fr % 3 === 0) {
             face = this.face[0]["R2"];
             this.currentP = this.face[0]["R2"];
-          } else if (this.FR % 2 === 0) {
+          } else if (this.Fr % 2 === 0) {
             face = this.face[0]["R1"];
             this.currentP = this.face[0]["R1"];
           } else {
@@ -172,11 +174,11 @@ export default {
       }
       if (x === 83) {
         if (this.positionY >= 130 && this.positionX < 390) {
-          this.FD++;
-          if (this.FD % 3 === 0) {
+          this.Fd++;
+          if (this.Fd % 3 === 0) {
             face = this.face[0]["D2"];
             this.currentP = this.face[0]["D2"];
-          } else if (this.FD % 2 === 0) {
+          } else if (this.Fd % 2 === 0) {
             face = this.face[0]["D1"];
             this.currentP = this.face[0]["D1"];
           } else {
@@ -210,3 +212,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+/* .avatar-img {
+  position: absolute;
+} */
+</style>

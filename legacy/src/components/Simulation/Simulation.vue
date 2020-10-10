@@ -1,18 +1,29 @@
 <template>
   <div id="map">
     <Maincharacter
-
       :MainP="MpPosition"
-      :id="this.data.Id"
-      :skin="this.data.skin"
+      :id="userdata.Id"
+      :skin="userdata.skin"
       @UnmountP="UnmountP"
     />
 
-    <Invitations v-if="displayInvitations" :id="data.Id" @hideInv="hideInv" />
+    <!-- <Invitations
+      v-if="displayInvitations"
+      :id="userdata.Id"
+      @hideInv="hideInv"
+    /> -->
     <!-- <Friends :friends="friends" @showchat="showchat" /> -->
-    <!-- <Chat :messages="friends[selectedfriend]" :from="name" :position="selectedfriend" /> -->
-    <img src="/images/Friends.png" id="FriendsLogo" @click="tooglechatinvitations" />
-    <img src="/images/send-m.png" id="invitations" @click="tooglefriends"  />
+    <!-- <Chat
+      :messages="friends[selectedfriend]"
+      :from="name"
+      :position="selectedfriend"
+    /> -->
+    <!-- <img
+      src="/images/Friends.png"
+      id="FriendsLogo"
+      @click="tooglechatinvitations"
+    /> -->
+    <!-- <img src="/images/send-m.png" id="invitations" @click="tooglefriends" /> -->
   </div>
 </template>
 
@@ -29,21 +40,20 @@
 import axios from "axios";
 import Toast from "light-toast";
 // import Friends from './Friends';
-// import Chat from './Chat';
-import Invitations from "./Invitations";
+// import Chat from "./Chat";
+// import Invitations from "./Invitations";
 import Maincharacter from "./MainChar";
 // import Characters from './Chars'
 export default {
   name: "Simulation",
   components: {
-    Invitations,
+    // Invitations,
     Maincharacter,
     // Friends,
-    // Chat
+    // Chat,
   },
   data() {
     return {
-
       UnmountPX: "",
       UnmountPY: "",
       friends: [],
@@ -64,17 +74,16 @@ export default {
           this.PsPositions = result.data;
         });
       }, 150),
-    d: setInterval(() => {
-      let data = { id: this.id };
-      axios.post("/fetchFriends", data).then((result) => {
-        this.friends = result.data;
-      });
-    }, 2000),
+      d: setInterval(() => {
+        let data = { id: this.id };
+        axios.post("/fetchFriends", data).then((result) => {
+          this.friends = result.data;
+        });
+      }, 2000),
     };
   },
-  props: ["data"],
+  props: ["userdata"],
   methods: {
-
     deleteposition() {
       let data = {
         x: this.UnmountPX,
@@ -101,13 +110,12 @@ export default {
       this.displayChat = false;
     },
 
-
     tooglefriends() {
       this.displayFriends = !this.displayFriends;
       this.displayInvitations = false;
       this.displayChat = false;
     },
-    
+
     // getKeys(){
     //   console.log('My getKeys fnc for the v-for returning actual PsPositions =====>', this.PsPositions)
     //     let keys = [];
@@ -118,29 +126,31 @@ export default {
     //   }
   },
 
-
-
   mounted() {
     this.$nextTick(function () {
       Toast.info(
         "Moves: \n Up : W  \n Right : D  \n Left : A \n  Down : S",
         500
       );
-      console.log("Simul mounted this.data.id ====>", this.data.Id);
-      console.log("Simul mounted this.data.skin ====>", this.data.skin);
+      console.log("1 Simul mounted this.userdata.id ====>", this.userdata.Id);
+      console.log(
+        "1 Simul mounted this.userdata.skin ====>",
+        this.userdata.skin
+      );
       this.$emit("UserId", this.id);
       let data = {
-        id: this.data.Id,
-        Face: `../../../public/images/chars/${this.data.skin}/FD/fd0.png`,
-        skin: this.data.skin,
+        id: this.userdata.Id,
+        Face: `../../../public/images/chars/${this.userdata.skin}/FD/fd0.png`,
+        skin: this.userdata.skin,
       };
-      console.log(data);
+      /////////////////////////////////////////////////////////////////////////////////////////////// IM here
+      console.log("data to be sent to /Rposition", data);
       axios.post("/Rposition", data).then((data) => {
-        console.log('data objet feragh ====>', data.data)
+        console.log("data objet feragh ====>", data.data);
         console.log("this.PsPositions ====>", this.PsPositions);
         console.log("this.PsPositions[this.d] ====>", this.PsPositions[this.d]);
         setTimeout(() => {
-          console.log(this.id)
+          console.log(this.id);
           // this.UnmountPX = this.PsPositions[this.id].split("-")[0] * 1;
           // this.UnmountPY =
           //   this.PsPositions[this.id].split("-")[1].split("=")[0] * 1;
@@ -155,7 +165,13 @@ export default {
       });
     });
   },
-  
+  beforeUpdate() {
+    console.log("before update :", this.id, this.name);
+  },
+  updated() {
+    console.log("updated :", this.userdata.Id, this.name);
+  },
+
   beforeDestroy() {
     this.deleteposition();
     clearInterval(this.s);
@@ -174,28 +190,28 @@ export default {
 
 
 <style>
-#map{
-    border: solid #a2a2a273 4px;
-    border-radius: 6px;
-    position: relative;
-    top: 17px;
-    left: 315px;
-    background-image: url(/images/map/map.png);
-    width: 680px;
-    height: 500px;
-    margin: 0%;
-    padding: 0%;
-  }
-  #FriendsLogo{
-   margin: 0%;
-   padding: 0%;
-   width: 50px;
-   position: absolute;
-   top: 450px;
-   left: 625px;
- }
+#map {
+  border: solid #a2a2a273 4px;
+  border-radius: 6px;
+  position: relative;
+  top: 17px;
+  left: 315px;
+  background-image: url(/images/map/map.png);
+  width: 680px;
+  height: 500px;
+  margin: 0%;
+  padding: 0%;
+}
+#FriendsLogo {
+  margin: 0%;
+  padding: 0%;
+  width: 50px;
+  position: absolute;
+  top: 450px;
+  left: 625px;
+}
 
- #invitations{
+#invitations {
   position: absolute;
   width: 30px;
   top: 441px;
@@ -203,5 +219,4 @@ export default {
   height: 64px;
   width: 50px;
 }
-
 </style>
