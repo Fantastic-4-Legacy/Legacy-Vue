@@ -16,10 +16,10 @@ export default {
       character: 0,
       Id: 0,
       name: "",
-      FD: 0,
-      FU: 0,
-      FL: 0,
-      FR: 0,
+      Fd: 0,
+      Fu: 0,
+      Fl: 0,
+      Fr: 0,
       positionX: 0,
       positionY: 0,
     };
@@ -75,11 +75,11 @@ export default {
       var face = "";
       if (x === 87) {
         if (this.positionX <= 390 && this.positionX > 130) {
-          this.FU++;
-          if (this.FU % 3 === 0) {
+          this.Fu++;
+          if (this.Fu % 3 === 0) {
             face = this.face[0]["u2"];
             this.currentP = this.face[0]["u2"];
-          } else if (this.FU % 2 === 0) {
+          } else if (this.Fu % 2 === 0) {
             face = this.face[0]["u1"];
             this.currentP = this.face[0]["u1"];
           } else {
@@ -108,12 +108,12 @@ export default {
       }
       if (x === 65) {
         if (this.positionY <= 390 && this.positionY > 100) {
-          this.FL++;
-          if (this.FL % 3 === 0) {
+          this.Fl++;
+          if (this.Fl % 3 === 0) {
             face = this.face[0]["L2"];
             this.currentP = this.face[0]["L2"];
           }
-        } else if (this.FL % 2 === 0) {
+        } else if (this.Fl % 2 === 0) {
           face = this.face[0]["L1"];
           this.currentP = this.face[0]["L1"];
         } else {
@@ -141,11 +141,11 @@ export default {
       }
       if (x === 68) {
         if (this.positionY < 390 && this.positionY >= 0) {
-          this.FR++;
-          if (this.FR % 3 === 0) {
+          this.Fr++;
+          if (this.Fr % 3 === 0) {
             face = this.face[0]["R2"];
             this.currentP = this.face[0]["R2"];
-          } else if (this.FR % 2 === 0) {
+          } else if (this.Fr % 2 === 0) {
             face = this.face[0]["R1"];
             this.currentP = this.face[0]["R1"];
           } else {
@@ -174,11 +174,11 @@ export default {
       }
       if (x === 83) {
         if (this.positionY >= 130 && this.positionX < 390) {
-          this.FD++;
-          if (this.FD % 3 === 0) {
+          this.Fd++;
+          if (this.Fd % 3 === 0) {
             face = this.face[0]["D2"];
             this.currentP = this.face[0]["D2"];
-          } else if (this.FD % 2 === 0) {
+          } else if (this.Fd % 2 === 0) {
             face = this.face[0]["D1"];
             this.currentP = this.face[0]["D1"];
           } else {

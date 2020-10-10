@@ -7,19 +7,23 @@
       @UnmountP="UnmountP"
     />
 
-    <Invitations v-if="displayInvitations" :id="userdata.Id" @hideInv="hideInv" />
+    <!-- <Invitations
+      v-if="displayInvitations"
+      :id="userdata.Id"
+      @hideInv="hideInv"
+    /> -->
     <!-- <Friends :friends="friends" @showchat="showchat" /> -->
-    <Chat
+    <!-- <Chat
       :messages="friends[selectedfriend]"
       :from="name"
       :position="selectedfriend"
-    />
-    <img
+    /> -->
+    <!-- <img
       src="/images/Friends.png"
       id="FriendsLogo"
       @click="tooglechatinvitations"
-    />
-    <img src="/images/send-m.png" id="invitations" @click="tooglefriends" />
+    /> -->
+    <!-- <img src="/images/send-m.png" id="invitations" @click="tooglefriends" /> -->
   </div>
 </template>
 
@@ -36,17 +40,17 @@
 import axios from "axios";
 import Toast from "light-toast";
 // import Friends from './Friends';
-import Chat from './Chat';
-import Invitations from "./Invitations";
+// import Chat from "./Chat";
+// import Invitations from "./Invitations";
 import Maincharacter from "./MainChar";
 // import Characters from './Chars'
 export default {
   name: "Simulation",
   components: {
-    Invitations,
+    // Invitations,
     Maincharacter,
     // Friends,
-    Chat
+    // Chat,
   },
   data() {
     return {
@@ -129,7 +133,10 @@ export default {
         500
       );
       console.log("1 Simul mounted this.userdata.id ====>", this.userdata.Id);
-      console.log("1 Simul mounted this.userdata.skin ====>", this.userdata.skin);
+      console.log(
+        "1 Simul mounted this.userdata.skin ====>",
+        this.userdata.skin
+      );
       this.$emit("UserId", this.id);
       let data = {
         id: this.userdata.Id,
@@ -137,7 +144,7 @@ export default {
         skin: this.userdata.skin,
       };
       /////////////////////////////////////////////////////////////////////////////////////////////// IM here
-      console.log('data to be sent to /Rposition',data);
+      console.log("data to be sent to /Rposition", data);
       axios.post("/Rposition", data).then((data) => {
         console.log("data objet feragh ====>", data.data);
         console.log("this.PsPositions ====>", this.PsPositions);
@@ -183,26 +190,26 @@ export default {
 
 
 <style>
-#map{
-    border: solid #a2a2a273 4px;
-    border-radius: 6px;
-    position: relative;
-    top: 17px;
-    left: 315px;
-    background-image: url(/images/map/map.png);
-    width: 680px;
-    height: 500px;
-    margin: 0%;
-    padding: 0%;
-  }
-  #FriendsLogo{
-   margin: 0%;
-   padding: 0%;
-   width: 50px;
-   position: absolute;
-   top: 450px;
-   left: 625px;
- }
+#map {
+  border: solid #a2a2a273 4px;
+  border-radius: 6px;
+  position: relative;
+  top: 17px;
+  left: 315px;
+  background-image: url(/images/map/map.png);
+  width: 680px;
+  height: 500px;
+  margin: 0%;
+  padding: 0%;
+}
+#FriendsLogo {
+  margin: 0%;
+  padding: 0%;
+  width: 50px;
+  position: absolute;
+  top: 450px;
+  left: 625px;
+}
 
 #invitations {
   position: absolute;
@@ -212,5 +219,4 @@ export default {
   height: 64px;
   width: 50px;
 }
-
 </style>
